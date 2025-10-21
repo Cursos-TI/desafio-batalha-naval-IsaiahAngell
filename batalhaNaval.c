@@ -5,10 +5,67 @@
 // Siga os comentários para implementar cada parte do desafio.
 
 int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+  //Criação do tabuleiro
+  int matriz[10][10] = {
+  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+};
+  //Navios, horizontal e vertical
+  int navio_hori[3] = {3, 3, 3};
+  int navio_vert[3] = {3, 3, 3};
+
+  //Posição do navio horizontal
+  int linha_hori = 5;
+  int coluna_hori = 5;
+
+  //Posição do navio vertical
+  int linha_vert = 0;
+  int coluna_vert = 0;
+
+  // Garantir que o navio horizontal cabe no tabuleiro
+  if (coluna_hori + 3 > 10) {
+    printf("Erro: navio horizontal ultrapassa os limites do tabuleiro.\n");
+    
+  }
+
+  // Garantir que o navio vertical cabe no tabuleiro
+  if (linha_vert + 3 > 10) {
+    printf("Erro: navio vertical ultrapassa os limites do tabuleiro.\n");
+    
+  }
+
+
+  //Colocando os navios na matriz
+  for (int i = 0; i < 3; i++) {
+      matriz[linha_hori][coluna_hori + i] = navio_hori[i];
+  }
+  for (int i = 0; i < 3; i++) {
+    //Verificando se o navio sobrepõe o outro
+    if (matriz[linha_vert + i][coluna_vert] == 3) {
+      printf("Erro: sobreposição de navios detectada!\n");
+
+      
+  }
+      matriz[linha_vert + i][coluna_vert] = navio_vert[i];
+  }
+
+
+
+//Imprimindo a matriz com loop aninhado
+  for(int i = 0; i < 10; i++){
+  for(int j = 0; j < 10; j++){
+    printf("%d ", matriz[i][j]);
+  }
+  printf("\n");
+};
 
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
