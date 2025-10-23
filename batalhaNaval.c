@@ -18,9 +18,11 @@ int main() {
   {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
   {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 };
-  //Navios, horizontal e vertical
+  //Navios, horizontal , vertical e diagonal
   int navio_hori[3] = {3, 3, 3};
   int navio_vert[3] = {3, 3, 3};
+  int navio_diag[3] = {3, 3, 3};
+  int navio_diag2[3] = {3, 3, 3};
 
   //Posição do navio horizontal
   int linha_hori = 5;
@@ -29,6 +31,13 @@ int main() {
   //Posição do navio vertical
   int linha_vert = 0;
   int coluna_vert = 0;
+
+  //Posição dos navios diagonal
+  int linha_diag = 7;
+  int coluna_diag = 7;
+
+  int linha_diag2 = 0;
+  int coluna_diag2 = 5;
 
   // Garantir que o navio horizontal cabe no tabuleiro
   if (coluna_hori + 3 > 10) {
@@ -40,6 +49,11 @@ int main() {
   if (linha_vert + 3 > 10) {
     printf("Erro: navio vertical ultrapassa os limites do tabuleiro.\n");
     
+  }
+
+  // Garantir que o navio diagonal cabe no tabuleiro
+  if (linha_diag + 3 > 10 || coluna_diag + 3 > 10){
+    printf("Erro: navio diagonal ultrapassa os limites do tabuleiro.\n");
   }
 
 
@@ -55,6 +69,21 @@ int main() {
       
   }
       matriz[linha_vert + i][coluna_vert] = navio_vert[i];
+  }
+
+  for (int i = 0; i < 3; i++){
+    if(matriz[linha_diag2 + i][coluna_diag2 + i] == 3){
+      printf("Erro: sobreposição do navio diagonal 2 detectada.\n");
+    }
+    matriz[linha_diag2 + i][coluna_diag2 + i] = navio_diag2[i];
+  }
+
+  for (int i = 0; i < 3; i++){
+    //Verificar se o navio diagonal sobrepõe
+    if(matriz[linha_diag + i][coluna_diag + i] == 3){
+      printf("Erro: sobreposição do navio diagonal detectada.\n");
+    }
+    matriz[linha_diag + i][coluna_diag + i] = navio_diag[i];
   }
 
 
