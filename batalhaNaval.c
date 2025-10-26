@@ -24,6 +24,29 @@ int main() {
   int navio_diag[3] = {3, 3, 3};
   int navio_diag2[3] = {3, 3, 3};
 
+  //Criando Habilidades
+
+  //Habilidade em Cruz
+  int hab_cruz[3][5] = {
+    {0,0,1,0,0},
+    {1,1,1,1,1},
+    {0,0,1,0,0}
+  };
+
+  //Habilidade em Octaedro
+  int hab_octa[3][3] = {
+    {0, 1, 0},
+    {1, 1, 1},
+    {0, 1, 0},
+  };
+
+  //Habilidade em Cone
+  int hab_cone[3][5] = {
+    {0, 0, 1, 0, 0},
+    {0, 1, 1, 1, 0},
+    {1, 1, 1, 1, 1}
+  };
+
   //Posição do navio horizontal
   int linha_hori = 5;
   int coluna_hori = 5;
@@ -39,6 +62,18 @@ int main() {
   int linha_diag2 = 0;
   int coluna_diag2 = 5;
 
+  //Ponto Central da habilidade em cruz
+  int linha_cruz = 5;
+  int coluna_cruz = 5;
+
+  //Ponto Central da habilidade em Octaedro
+  int linha_octa = 2;
+  int coluna_octa = 3;
+
+  //Ponto Central da habilidade em Cone
+  int linha_cone = 7;
+  int coluna_cone = 2;
+  
   // Garantir que o navio horizontal cabe no tabuleiro
   if (coluna_hori + 3 > 10) {
     printf("Erro: navio horizontal ultrapassa os limites do tabuleiro.\n");
@@ -54,6 +89,18 @@ int main() {
   // Garantir que o navio diagonal cabe no tabuleiro
   if (linha_diag + 3 > 10 || coluna_diag + 3 > 10){
     printf("Erro: navio diagonal ultrapassa os limites do tabuleiro.\n");
+  }
+
+  //Garantindo que as habilidades cabem no tabuleiro
+  if(linha_cone + 3 > 10 || coluna_cone + 5 > 10){
+    printf("Cone Ultrapassa os limites do tabuleiro");
+  }
+  if(linha_octa + 3 > 10 || coluna_octa + 3 > 10){
+    printf("Octaedro Ultrapassa os limites do tabuleiro");
+  }
+
+  if(linha_cruz + 3 > 10 || coluna_cruz + 5 > 10){
+    printf("Cruz ultrapassa os limites do tabuleiro");
   }
 
 
@@ -85,6 +132,33 @@ int main() {
     }
     matriz[linha_diag + i][coluna_diag + i] = navio_diag[i];
   }
+
+  //Colocando Habilidade Cone na matriz
+  for(int i = 0;i < 3; i++){
+    for(int j = 0; j < 5; j++){ 
+      if(j + 5 > 10 || j - 3 < 0){
+        printf("Cone ultrapassa os limites do tabuleiro");
+       }
+      matriz[linha_cone - 1 + i][coluna_cone - 2 + j] = hab_cone[i][j];
+    }
+    printf("\n");
+  }
+  //Colocando Habilidade octaedro na matriz
+  for(int i = 0; i < 3; i++){
+    for(int j = 0; j < 3; j++){
+      matriz[linha_octa - 1 + i][coluna_octa - 1 + j] = hab_octa[i][j];
+    }
+    printf("\n");
+  }
+
+  //Colocando Habilidade em cruz na matriz
+  for(int i = 0; i < 3; i++){
+    for(int j = 0; j < 5; j++){
+      matriz[linha_cruz - 1 + i][coluna_cruz - 2 + j] = hab_cruz[i][j];
+    }
+    printf("\n");
+  }
+  
 
 
 
